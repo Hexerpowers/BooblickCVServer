@@ -56,7 +56,7 @@ def find_buoy(img, lower, upper, label, iterations, quant, kernel_size=(9, 9)):
     #                         cv2.FONT_HERSHEY_SIMPLEX, 1, negative, 2)
     # cv2.imshow('mask', mask)
     # cv2.imshow('dilated', dilated)
-
+    cv2.imshow('frame', img)
     return contours_coordinates
 
 
@@ -93,25 +93,25 @@ def find_gates(img, lower, upper, label, iterations, kernel_size=(9, 9)):
                     cv2.FONT_HERSHEY_SIMPLEX, 1, negative, 2)
         cv2.line(img, (xc1, yc1), (xc2, yc2), negative, thickness=3)
         cv2.circle(img, (x, y), radius=3, color=(0, 0, 255), thickness=3)
+        cv2.imshow('frame', img)
         return x, y
-
+    cv2.imshow('frame', img)
     return None
 
 
 def find_dock(img, lower, upper, label, iterations, kernel_size=(9, 9)):
+    return find_buoy(img, lower, upper, label, iterations, 1, kernel_size)
 
 
-    return None
-
-while True:
-    ret, frame = cap.read()
-    # coordinates = find_buoy(frame, np.array([5, 141, 101]), np.array([33, 215, 149]), "Warning", 4, 6)
-    # print(coordinates)
-    coordinates = find_gates(frame, np.array([5, 141, 101]), np.array([33, 215, 149]), "Gate", 4)
-    print(coordinates)
-
-    cv2.imshow('frame', frame)
-    k = cv2.waitKey(5) & 0xFF
-    if k == 27:
-        break
-cv2.destroyAllWindows()
+# while True:
+#     ret, frame = cap.read()
+#     # coordinates = find_buoy(frame, np.array([5, 141, 101]), np.array([33, 215, 149]), "Warning", 4, 6)
+#     # print(coordinates)
+#     coordinates = find_gates(frame, np.array([5, 141, 101]), np.array([33, 215, 149]), "Gate", 4)
+#     print(coordinates)
+#
+#     cv2.imshow('frame', frame)
+#     k = cv2.waitKey(5) & 0xFF
+#     if k == 27:
+#         break
+# cv2.destroyAllWindows()

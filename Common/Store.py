@@ -7,12 +7,9 @@ class Store:
         self.lg = lg
 
         self.data = {
-            "position_estimate": {"x": 0, "y": 0},
-            "heading": 0,
-            "initial_heading": 0,
             "cv_alignment": 0,
             "task_cv_complete": False,
-            "cv_mode": "yellow_gate"
+            "cv_mode": ""
         }
 
     def clean_runtime(self):
